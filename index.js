@@ -2,7 +2,9 @@ const express = require("express");
 const passport = require("passport")
 const boom = require("@hapi/boom")
 const cookieParser = require("cookie-parser")
-var axios = require("axios");
+const axios = require("axios");
+
+const { frontendRoutes } = require("./routes")
 
 const { config } = require("./config");
 
@@ -14,7 +16,7 @@ app.use(express.json())
 
 //View engine "ejs"
 app.set("view engine", "ejs");
-
+app.use('/static', express.static(`public`))
 // BasicStrategy
 require("./utils/auth/strategies/basic")
 // BasicStrategy
@@ -23,8 +25,10 @@ require("./utils/auth/strategies/basic")
 require("./utils/auth/strategies/oAuth")
 //OAuth 2.0 Strategy
 
-//success
-app.post("/auth/sign-in", async function(req, res, next) {
+//Routes FRONTEND
+frontendRoutes(app)
+//Routes AUTH
+app.post("/api/auth/sign-in", async function(req, res, next) {
   
   passport.authenticate("basic", (err, data) => {
     try {
@@ -50,8 +54,8 @@ app.post("/auth/sign-in", async function(req, res, next) {
     }
   })(req, res, next)  
 });
-//success
-app.post("/auth/sign-up", async function(req, res, next) {
+
+app.post("/api/auth/sign-up", async function(req, res, next) {
   const {body: user} = req;
   try {
     const { status }= await axios({
@@ -73,12 +77,11 @@ app.post("/auth/sign-up", async function(req, res, next) {
   }
 });
 
-app.get("/movies", async function(req, res, next) {
+app.get("/api/movies", async function(req, res, next) {
 
 }); 
 
-//success
-app.post("/user-movies",async  function(req, res, next) {
+app.post("/api/user-movies",async  function(req, res, next) {
   try {
     const { body: userMovie } = req
     const { token } = req.cookies
@@ -102,8 +105,8 @@ app.post("/user-movies",async  function(req, res, next) {
       next(error)
   }
 });
-//success
-app.delete("/user-movies/:userMovieId", async function(req, res, next) {
+
+app.delete("/api/user-movies/:userMovieId", async function(req, res, next) {
   try {
     const { userMovieId } = req.params
     const { token } = req.cookies  
@@ -126,12 +129,12 @@ app.delete("/user-movies/:userMovieId", async function(req, res, next) {
   }
 });
 
-app.get("/auth/google-oauth", passport.authenticate("google-oauth", {
+app.get("/api/auth/google-oauth", passport.authenticate("google-oauth", {
   
   scope: ["email", "profile", "openid"]
 }))
 
-app.get("/auth/google-oauth/callback",passport.authenticate("google-oauth" , { session: false}), (req, res, next)=>{
+app.get("/api/auth/google-oauth/callback",passport.authenticate("google-oauth" , { session: false}), (req, res, next)=>{
   if (!req.user) {
     return next(boom.unauthorized())
   }

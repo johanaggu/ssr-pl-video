@@ -1,0 +1,12 @@
+
+.card{
+    border: 2px solid red;
+    padding: .5em;
+    margin-top: 1em;
+    border-radius: 10px;
+    width: 13em;
+}
+
+.card-email{
+    background-color: burlywood;
+}

@@ -1,5 +1,5 @@
 node_modules
 *.env
-*.html
+
 //Google client
 client_secret_714563252978-1a912264dvn06d6rjli7fiqpidki56dd.apps.googleusercontent.com.json
