@@ -8,7 +8,7 @@ button.onclick= ()=> {
     } 
     if (email.value && password.value) {
         
-        axios("http://localhost:4000/auth/sign-in",{
+        axios("/auth/sign-in",{
             method:"post",
             auth:{
                 username: email.value,
