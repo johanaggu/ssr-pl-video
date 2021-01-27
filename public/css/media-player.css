@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+* {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: #060613;
+}
+
+main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 3em);
+}
+
+
+.header {
+  align-items: center;
+  background-color: #060613;
+  color: white;
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  top: 0px;
+  width: 100%;
+}
+
+.header__img {
+  margin-left: 30px;
+  width: 200px;
+}
+
+/*  */
+.reproductor {
+  grid-column: 1/21;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: #242432;
+}
+
+.reproductor-video {
+  width: 100%;
+}
+
+.reproductor-controls {
+  height: 2.5em;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+}
+.reproductor-controls button {
+  background: #060613;
+  margin: 0.2em;
+  border: none;
+  color: #ffffff;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+}
+.reproductor-controls .playButton {
+  grid-column: 1/2;
+}
+.reproductor-controls .unMuted {
+  grid-column: 2/3;
+}
+.reproductor-controls .fullscreen_div {
+  display: flex;
+  align-items: center;
+  grid-column: 20/21;
+}
+
+.comments {
+  grid-row: 15;
+  grid-column: 5/16;
+}
+
+.comment {
+  background-color: #242432;
+  color: #ffffff;
+  border-radius: 5px;
+  margin-top: 1em;
+  height: 10em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.comment .comment-left {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.comment .comment-left .comment-left_img {
+  margin-bottom: 1em;
+  border-radius: 10em;
+  background-color: yellow;
+  width: 5em;
+  height: 5em;
+}
+.comment .comment-right {
+  grid-column: 2/4;
+  padding-right: 1.5em;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  font-size: 0.9em;
+}
+
+@media (max-width: 600px) {
+  .comments {
+    grid-row: 5;
+    grid-column: 2/20;
+  }
+
+  .comment {
+    height: 7em;
+  }
+  .comment .comment-left_img {
+    width: 3em;
+    height: 3em;
+    font-size: 0.7rem;
+  }
+  .comment .comment-right {
+    font-size: 0.7em;
+  }
+}

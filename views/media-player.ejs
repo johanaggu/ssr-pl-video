@@ -1,0 +1,53 @@
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PlatziMediaPlayer.js</title>
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+  <link rel="shortcut icon" href="/static/assets/play-icon.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/media-player.css">
+  <link rel="stylesheet" href="/static/css/media-player.css">
+</head>
+
+<body>
+  <header class="header">
+    <a href="/initial-view">
+      <img class="header__img" src="/static/assets/logo-platzi-video-BW2.png" alt="Platzi Video">
+    </a>
+    </header>
+  
+  <main >
+    <!-- Reproductor -->
+    <div class="reproductor">
+      <video id="video" class="reproductor-video" src="<%= decodeVideoUrl %>"  >
+      </video>
+      <div class="reproductor-controls">
+        <button class="playButton" id="playButton">
+          <span id="playButton_span" class="material-icons"></span>
+        </button>
+        <button class="unMuted" id="unMuted">
+          <span id="mutedButton_span" class="material-icons">volume_off</span>
+        </button>
+        <div class="fullscreen_div">
+          <button id="fullscreen">
+            <span class="material-icons">fullscreen</span>
+          </button>
+        </div>
+      </div>
+    </div>  
+    <!-- Otros videos -->
+    <div class="otrosVideos">
+    </div>
+    <!-- Comments -->
+    <div id="comments" class="comments">
+    </div>
+  </main>  
+  
+  <link rel="stylesheet" href="/static/css/media-player.css">
+  <script type="module" src="http://localhost:4000/static/js/media-player.js"></script> 
+</body>
+
+</html>

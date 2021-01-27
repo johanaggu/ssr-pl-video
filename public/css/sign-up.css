@@ -47,7 +47,18 @@ body {
     display: flex;
     flex-direction: column;
   }
+  .register__container--social-media > a {
+    align-items: center;
+    display: flex;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
   
+  .register__container--social-media > a > img {
+    margin-right: 10px;
+    width: 30px;
+  }
+
   .register__container a {
     color: white;
     font-size: 16px;
