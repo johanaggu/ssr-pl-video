@@ -177,7 +177,6 @@ app.delete("/user-movies/:userMovieId", async function(req, res, next) {
 });
 
 app.get("/auth/google-oauth", passport.authenticate("google-oauth", {
-  
   scope: ["email", "profile", "openid"]
 }))
 
