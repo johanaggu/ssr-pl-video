@@ -61,9 +61,9 @@ body {
 
   .register__container a {
     color: white;
-    font-size: 16px;
+    font-size: 17px;
     text-align: center;
-    text-decoration: none;
+    /* text-decoration: none; */
   }
   
   .register__container a:hover {

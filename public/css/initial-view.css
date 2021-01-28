@@ -51,8 +51,9 @@ body {
     text-decoration: none;
   }
   
-  .header__menu li a:hover {
+  .header__menu li:hover {
     text-decoration: underline;
+    cursor: pointer;
   }
   
   .header__menu--profile {

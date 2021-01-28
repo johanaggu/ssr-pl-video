@@ -14,20 +14,13 @@ function routesFrontend(app){
             
             let { token } = req.cookies
             if (!token) return res.redirect("/login")
-            let {data, status, isAxiosError } =  await axios({
+            let {data, status } =  await axios({
                 method: "get",
                 url:`${config.hostUri}/movies/${token}`,
             })
-            
-            let playButton =(title)=>{
-                if(title){        
-                    console.log(title)
-                }else {
-                    console.log("No hay titlr")
-                }
-            }
+
             let movies = data.data
-            res.render("initial-view", {movies, playButton })
+            res.render("initial-view", { movies })
         } catch (error) {
             res.redirect("/login")
         }
