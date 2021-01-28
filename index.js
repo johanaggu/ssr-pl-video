@@ -192,7 +192,7 @@ app.get("/auth/google-oauth/callback",passport.authenticate("google-oauth" , { s
     httpOnly: !config.dev,
     secure: !config.dev
   })
-
+  res.redirect("/initial-view")
   res.status(200).json(user)
 
 
