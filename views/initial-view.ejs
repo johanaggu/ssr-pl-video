@@ -42,7 +42,7 @@
         <div class="carousel-item__details">
           <div>             
             <img onclick=playButton("<%= movie.movieId.video_url %>")  class="carousel-item__details--img" src="/static/assets/play-icon.png" alt="Play Icon">
-            <img onclick=removeButton("<%= movie.movieId._id %>") class="carousel-item__details--img" src="/static/assets/remove-icon.png" alt="Plus Icon">
+            <img onclick=removeButton("<%= movie._id %>") class="carousel-item__details--img" src="/static/assets/remove-icon.png" alt="Plus Icon">
           </div>
           <!--  SRC VIDEO -->
           <div class="auto" id="auto" style="display: none;">
