@@ -87,7 +87,7 @@
         <div class="carousel-item__details">
           <div>             
             <img onclick=playButton("<%= movie.video_url %>") class="carousel-item__details--img" src="/static/assets/play-icon.png" alt="Play Icon">
-            <img class="carousel-item__details--img" src="/static/assets/plus-icon.png" alt="Plus Icon">
+            <img onclick=addButton("<%= movie._id %>") class="carousel-item__details--img" src="/static/assets/plus-icon.png" alt="Plus Icon">
           </div>
           <p class="carousel-item__details--title"><%= movie.title %></p>
           <p class="carousel-item__details--subtitle">Year <%= movie.year %> </p>
