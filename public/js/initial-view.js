@@ -11,6 +11,7 @@ let playButton = (video_url) => {
         console.log("No hay video")
     }
 }
+// Add favorites list
 let addButton = async (movieId) => {
     try {
         let getMovie = await axios(`/movie/${movieId}`);
@@ -22,24 +23,27 @@ let addButton = async (movieId) => {
                 "movieId": movie
             }
         })
-        
+
         location.reload()
     } catch (error) {
 
     }
 
 }
-
+// Remove to favorites list
 let removeButton = async (userMovieId) => {
     let userMovieDeleted = await axios(`/user-movies/${userMovieId}`, {
         method: "delete"
     })
     console.log(userMovieDeleted);
     location.reload()
-
+    
 }
 //Logout (this function delete token)
-logoutButton.onclick = () => {
-    document.cookie = "token= ;"
-    window.location.href = "/login"
+logoutButton.onclick = async () => {
+    let logout = await axios("/logout", {
+        method:"post",
+    })
+    location.reload()
+
 }

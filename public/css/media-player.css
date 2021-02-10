@@ -128,3 +128,9 @@ main {
     font-size: 0.7em;
   }
 }
+@media (min-width: 600px) {
+  .reproductor{
+    grid-column: 7/15;
+  
+  }
+}

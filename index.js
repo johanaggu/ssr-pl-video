@@ -78,7 +78,6 @@ app.post("/auth/sign-up", async function(req, res, next) {
   }
 });
 
-
 app.get("/movie/:movieId", async function(req, res, next) {
   try {
     const { token } = req.cookies
