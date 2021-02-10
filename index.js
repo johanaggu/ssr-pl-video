@@ -78,14 +78,15 @@ app.post("/auth/sign-up", async function(req, res, next) {
   }
 });
 
-app.get("/movies/:token/:id", async function(req, res, next) {
+
+app.get("/movie/:movieId", async function(req, res, next) {
   try {
-    
-    const {id, token} = req.params
+    const { token } = req.cookies
+    const { movieId } = req.params
     
     const {data, status} = await axios({
       method: "get",
-      url: `${config.apiUrl}/api/movies/${id}`,
+      url: `${config.apiUrl}/api/movies/${movieId}`,
       headers: { 
         Accept:"*/*",
         Authorization: `Bearer ${token}`
@@ -104,7 +105,6 @@ app.get("/movies/:token/:id", async function(req, res, next) {
 }); 
 app.get("/movies/:token", async function(req, res, next) {
   try {
-
     const { token } = req.params
     const {data, status} = await axios({
       method: "get",
@@ -126,6 +126,30 @@ app.get("/movies/:token", async function(req, res, next) {
   }
 }); 
 
+app.get("/user-movies/:token",async  function(req, res, next) {
+  try {
+    const { token } = req.params
+    
+    const { data, status } = await axios({
+      method: "get",
+      url: `${config.apiUrl}/api/user-movies`,
+      headers: { 
+        Accept:"*/*",
+        Authorization: `Bearer ${token}`
+      },
+    })  
+    
+
+    if(status !== 200){
+      return next(boom.badImplementation())
+    }
+
+    res.status(status).json(data)
+    
+  } catch (error) {
+      next(error)
+  }
+});
 app.post("/user-movies",async  function(req, res, next) {
   try {
     const { body: userMovie } = req

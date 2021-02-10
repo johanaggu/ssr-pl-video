@@ -2,6 +2,14 @@ const express = require("express")
 const axios = require("axios")
 const base64 = require("base-64")
 const {config} = require("../config")
+
+function decodePayloadJWT(token){
+    let payloadEncode = token.split(".")[1]
+    let payloadDecode = JSON.parse(base64.decode(payloadEncode))
+    return payloadDecode
+
+}
+
 function routesFrontend(app){
     const router = express.Router()
     app.use("/", router)
@@ -14,13 +22,28 @@ function routesFrontend(app){
             
             let { token } = req.cookies
             if (!token) return res.redirect("/login")
-            let {data, status } =  await axios({
+
+            // Get User-Movies
+            let userMovies =  await axios({
+                method: "get",
+                url:`${config.hostUri}/user-movies/${token}`,
+            })
+            let userMoviesListed = userMovies.data.data
+            // Get All Movies
+            let { data } =  await axios({
                 method: "get",
                 url:`${config.hostUri}/movies/${token}`,
             })
-
+            // Token Paylod in JSON
+            let tokenPaylod = decodePayloadJWT(token)
+            
             let movies = data.data
-            res.render("initial-view", { movies })
+            res.render("initial-view", {
+                movies,
+                nameUser:tokenPaylod.name,
+                userId: tokenPaylod.sub,
+                userMoviesListed
+            })
         } catch (error) {
             res.redirect("/login")
         }
